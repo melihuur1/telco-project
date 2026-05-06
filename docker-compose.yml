@@ -1,0 +1,16 @@
+services:
+  oracle-db:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: telco_oracle
+    environment:
+      - ORACLE_PASSWORD=Sifre1234
+      - APP_USER=telco_user
+      - APP_USER_PASSWORD=Sifre1234
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./TABLE_CREATION_SCRIPTS.sql:/container-entrypoint-initdb.d/01_tables.sql
+
+volumes:
+  oracle-data:
